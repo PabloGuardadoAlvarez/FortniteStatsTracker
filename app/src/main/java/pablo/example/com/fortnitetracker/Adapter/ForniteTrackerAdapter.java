@@ -39,9 +39,9 @@ public class ForniteTrackerAdapter extends RecyclerView.Adapter<ForniteTrackerAd
 
     private  void putDataInAdapter(FortniteViewHolder fortniteViewHolder, FinalStats item){
 
-        fortniteViewHolder.txtLabel.setText(item.getLabel());
-        fortniteViewHolder.txtDisplayValue.setText(item.getDisplayValue());
-        fortniteViewHolder.txtRank.setText(item.getRank());
+        fortniteViewHolder.txtLabel.setText("Categoria : "+item.getLabel());
+        fortniteViewHolder.txtDisplayValue.setText(" Valor :" + item.getDisplayValue());
+        fortniteViewHolder.txtRank.setText("Rango Mundial :"+item.getRank());
 
     }
 
