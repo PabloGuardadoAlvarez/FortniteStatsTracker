@@ -39,7 +39,6 @@ public class ForniteViewModel extends ViewModel {
                             dataList.clear();
 
                             data = player.getPlayerStats().getPlayerStatsDetail();
-                            System.out.println("------------------->" + data.toString());
                             dataList.add(data.getScore());
                             dataList.add(data.getTrnRating());
                             dataList.add(data.getMatches());
