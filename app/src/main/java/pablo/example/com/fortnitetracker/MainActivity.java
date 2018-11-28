@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import pablo.example.com.fortnitetracker.Adapter.ForniteTrackerAdapter;
 import pablo.example.com.fortnitetracker.DTOs.FinalStats;
-import pablo.example.com.fortnitetracker.Repository.ForniteTrackerRP;
 import pablo.example.com.fortnitetracker.ViewModels.ForniteViewModel;
 
 import java.util.List;
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         forniteViewModel.playerDetailsMutableLiveData.observe(this, finalStats -> {
             if (finalStats != null) {
-                System.out.println("----->Entra!!");
                 generateStatsList(finalStats);
             }
 
@@ -64,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnbuscar(View view) {
-        System.out.println("plataforma : ----> "+platform.getSelectedItem().toString());
-        System.out.println("jugador: ---> "+busquedatxt.getText().toString());
+
         getParameters(platform.getSelectedItem().toString(),busquedatxt.getText().toString());
     }
 }
