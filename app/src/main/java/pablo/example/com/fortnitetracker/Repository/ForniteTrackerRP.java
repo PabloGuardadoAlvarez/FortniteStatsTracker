@@ -25,7 +25,7 @@ public class ForniteTrackerRP   {
     private ForniteTrackerApiService apiService = ForniteTrackerApiService.Factory();
 
 
-    public Observable<Player> getPlayer(String platform, String epicName){
+    public Observable<Player> getAllInfo(String platform, String epicName){
 
         return apiService.getInfoFornite(platform, epicName);
     }

@@ -19,8 +19,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<FinalStats> statsList;
-    ForniteTrackerRP forniteTrackerRP;
     ForniteTrackerAdapter forniteTrackerAdapter;
     RecyclerView recyclerView;
     EditText busquedatxt;
@@ -34,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findByView();
-        changeData("","");
-
-
     }
 
     public void findByView() {
@@ -46,35 +41,31 @@ public class MainActivity extends AppCompatActivity {
         platform = findViewById(R.id.platfomSpinner);
     }
 
-    private void changeData(String plataform, String epic_nickname) {
+    private void getParameters(String plataform, String epicName) {
 
         forniteViewModel = ViewModelProviders.of(this).get(ForniteViewModel.class);
 
-        forniteViewModel.playerDetailsMutableLiveData.observe(this, stadisticObjectData -> {
-            if (stadisticObjectData != null) {
-                Log.d("ServicioFornite", "Cambios: " + stadisticObjectData);
-                generateForniteList(stadisticObjectData);
+        forniteViewModel.playerDetailsMutableLiveData.observe(this, finalStats -> {
+            if (finalStats != null) {
+                System.out.println("----->Entra!!");
+                generateStatsList(finalStats);
             }
 
         });
-        forniteViewModel.getData(plataform,epic_nickname);
+        forniteViewModel.getData(plataform, epicName);
     }
 
-    private void generateForniteList(List<FinalStats> listFornite) {
+    private void generateStatsList(List<FinalStats> listFornite) {
         recyclerView = findViewById(R.id.forniteRecycler);
-        forniteTrackerAdapter = new ForniteTrackerAdapter(listFornite);
         layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(forniteTrackerAdapter);
+        forniteTrackerAdapter = new ForniteTrackerAdapter(listFornite);
     }
 
-    public void btnbuscar(View view){
-
-       String plataform = platform.getSelectedItem().toString();
-       String epic_nickname = busquedatxt.getText().toString();
-        Log.d("Cambio","plataforma "+plataform+" epic_name "+epic_nickname);
-        changeData(plataform, epic_nickname);
-        System.out.println(plataform);
-        System.out.println(epic_nickname);
+    public void btnbuscar(View view) {
+        System.out.println("plataforma : ----> "+platform.getSelectedItem().toString());
+        System.out.println("jugador: ---> "+busquedatxt.getText().toString());
+        getParameters(platform.getSelectedItem().toString(),busquedatxt.getText().toString());
     }
 }

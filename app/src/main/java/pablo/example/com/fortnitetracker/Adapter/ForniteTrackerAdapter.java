@@ -13,10 +13,10 @@ import java.util.List;
 
 public class ForniteTrackerAdapter extends RecyclerView.Adapter<ForniteTrackerAdapter.FortniteViewHolder> {
 
-    public List<FinalStats> dataList;
+    public List<FinalStats> finalStatsList;
 
-    public ForniteTrackerAdapter(List<FinalStats> dataList) {
-        this.dataList = dataList;
+    public ForniteTrackerAdapter(List<FinalStats> finalStatsList) {
+        this.finalStatsList = finalStatsList;
 
     }
 
@@ -32,36 +32,41 @@ public class ForniteTrackerAdapter extends RecyclerView.Adapter<ForniteTrackerAd
 
     @Override
     public void onBindViewHolder(@NonNull FortniteViewHolder fortniteViewHolder, int i) {
-        final FinalStats fnStats = dataList.get(i);
+        final FinalStats fnStats = finalStatsList.get(i);
 
         putDataInAdapter(fortniteViewHolder,fnStats);
     }
 
     private  void putDataInAdapter(FortniteViewHolder fortniteViewHolder, FinalStats item){
 
-        fortniteViewHolder.txtLabel.setText("Categoria : "+item.getLabel());
-        fortniteViewHolder.txtDisplayValue.setText(" Valor :" + item.getDisplayValue());
-        fortniteViewHolder.txtRank.setText("Rango Mundial :"+item.getRank());
+        fortniteViewHolder.txtLabel.setText(item.getLabel());
+        fortniteViewHolder.txtDisplayValue.setText(item.getDisplayValue());
+        fortniteViewHolder.txtRank.setText(item.getRank());
 
     }
 
     @Override
     public int getItemCount() {
-        System.out.println(dataList.size());
-        return  dataList.size();
+        System.out.println(finalStatsList.size());
+        return  finalStatsList.size();
 
     }
 
     public class FortniteViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtLabel, txtRank, txtDisplayValue;
+        private TextView txtLabel;
+        private TextView txtDisplayValue;
+        private TextView txtRank;
+
+
 
         public FortniteViewHolder(View itemView) {
             super(itemView);
 
-            txtLabel = itemView.findViewById(R.id.tv_label);
-            txtRank = itemView.findViewById(R.id.tv_rank);
-            txtDisplayValue = itemView.findViewById(R.id.tv_displayValue);
+            txtLabel = itemView.findViewById(R.id.txtLabel);
+            txtDisplayValue = itemView.findViewById(R.id.txtValue);
+            txtRank = itemView.findViewById(R.id.txtRank);
+
         }
 
     }
